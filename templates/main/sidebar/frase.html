@@ -1,0 +1,22 @@
+{% if perms.Activities.view_sentence %}
+    <li {% if request.path == "/sentences/" %} class="active" {% endif %}>
+        <a href="{% url 'sentence_list' %}"><i class="material-icons">play_arrow</i> Frases</a>
+    </li>
+    <ul class="list-unstyled">
+        {% if perms.Activities.view_verb %}
+            <li {% if request.path == "/verbs/" %} class="active" {% endif %}>
+                <a href='{% url "verb_list" %}'><i class="material-icons">keyboard_arrow_right</i> Verbos</a>
+            </li>
+        {% endif %}
+        {% if perms.Activities.view_resource %}
+            <li {% if request.path == "/resources/" %} class="active" {% endif %}>
+                <a href='{% url "resource_list" %}'><i class="material-icons">keyboard_arrow_right</i> Recursos</a>
+            </li>
+        {% endif %}
+        {% if perms.Activities.view_artefact %}
+            <li {% if request.path == "/artefacts/" %} class="active" {% endif %}>
+                <a href='{% url "artefact_list" %}'><i class="material-icons">keyboard_arrow_right</i> Artefactos</a>
+            </li>
+        {% endif %}
+    </ul>
+{% endif %}

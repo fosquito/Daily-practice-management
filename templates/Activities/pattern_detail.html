@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <table class="table">
+                <thead>
+                    <tr class="d-flex">
+                        <th class="col-12 border-top-0"><h4>Agrupamentos</h4></th> 
+                    </tr>
+                </thead>
+                <tbody style="max-height: 60vh;">
+                    {% for agrupamento in object.groups.all %}
+                    <tr class="d-flex">
+                        <td class="d-block col-8"> <a href="">{{ agrupamento.groupname }}</a></td>
+                        <td class="d-block col-4 text-right">{{ agrupamento.creationdate }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-4">
+            <h6 class="mt-2">Padrão:</h6>
+            <p>{{object.patternname}}</p>
+            <h6 class="mt-4">Autor:</h6>
+            <p>{{object.userid}}</p>
+            <h6 class="mt-4">Data de criação:</h6>
+            <p>{{object.data_creation}}</p>
+        </div>
+    </div> 
+</div>

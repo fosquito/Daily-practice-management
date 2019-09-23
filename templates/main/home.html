@@ -1,0 +1,24 @@
+
+ {% extends "main/navbar.html" %} 
+ {% block content %}
+	<div class="container">
+        <!--{% if perms.Users.add_user %}
+            {% include "tables/user.html" with object_list=users %}
+        {% endif %}-->
+        {% if perms.Activities.add_sentence %}
+            {% include "tables/sentence.html" with object_list=sentences %}
+        {% endif %}
+        {% if perms.Activities.add_group %}
+            {% include "tables/group.html" with object_list=groups %}
+        {% endif %}
+        {% if perms.Activities.add_pattern %}
+            {% include "tables/pattern.html" with object_list=patterns %}
+        {% endif %}
+        <!--{% if perms.Processes.add_process %}
+            {% include "tables/process.html" with object_list=processes %}
+        {% endif %}
+        {% if perms.Processes.add_activity %}
+            {% include "tables/activity.html" with object_list=activities %}
+        {% endif %}-->
+	</div>
+{% endblock %}

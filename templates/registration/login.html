@@ -1,0 +1,51 @@
+<head>
+		{% load static %}
+        {% load crispy_forms_tags %}
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Registo diário</title>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+		<!-- Bootstrap CSS CDN -->
+		<link rel="stylesheet" href="{% static 'css/bootstrap.css' %} ">
+		<link rel="stylesheet" href="{% static 'js/bootstrap.js' %} ">
+		<!-- Our Custom CSS -->
+		<link rel="stylesheet" href="{% static 'css/style.css' %}">
+		<!-- Font Awesome JS -->
+        <link rel="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css">
+        <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+        
+		<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+		<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+		<link rel='icon' href='favicon.ico' type='image/x-icon' sizes="16x16" />
+		<!-- jQuery CDN - Slim version (=without AJAX) -->
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<!-- Popper.JS -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+		<!-- Bootstrap JS -->
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+		
+</head>
+<body><br>
+	<div class="container my-5">
+		<form class="form-signin" method="post" action="{% url 'login' %}" style="background:#FFF; max-width:500px;margin: 0 auto; padding:16px;"> {% csrf_token %}
+			<h1 class="text-center">REGISTO DIÁRIO</h1><br>
+			<h2 class="text-center">LOGIN</h2><br>
+			{{ form|crispy }}
+			<br><div class="fluid-container">
+				<div class="row">
+					<div class="col-md-6">
+						<div class="checkbox text-left">
+							<input type="checkbox" value="remember-me" class=""> Remember me<br>
+							<a href="#">Recuperar senha</a>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="center">
+							<button class="btn btn-lg btn-block text-white" style="max-width:15vh;float:right;" type="submit">Login</button><!--bg-info-->
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+		</div>
+	</body>

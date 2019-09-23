@@ -1,0 +1,17 @@
+O foo e funcionario de uma empresa que utiliza a Aplicacao de Gestao de Praticas.
+
+O foo utiliza o google chrome para aceder ao website que disponibiliza a aplicacao.
+
+Seguindo o link: https://www.fooo.com
+
+Quando o website carrega verifica que se encontra numa pagina de Login, com o titulo Gestaodepraticasdiarias - Login
+
+Existe um formulario que pede username e password, um botao de Login, e um link de recuperacao de password.
+
+O Foo insere o seu Username (FooUser), e a sua Password (cr7GOAT), e verifica que recebe uma mensagem de erro = Username ou password erradas.
+
+Repara assim que a sua password deveria ser Cr7Goat, e tenta novamente o login.
+
+Desta vez, o login e' bem sucedido, e ele verifica que entra na p'agina com o titulo Home.
+
+Na NavBar encontra o seu nome (FooUser), e mais alguma informacao.

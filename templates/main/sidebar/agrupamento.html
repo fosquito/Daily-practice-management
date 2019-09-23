@@ -1,0 +1,5 @@
+{% if perms.Activities.view_group %}
+<li {% if request.path == "/groups/" %} class="active" {% endif %}>
+	<a href='{% url "group_list" %}'><i class="material-icons">play_arrow</i> Agrupamentos</a>
+</li>
+{% endif %}

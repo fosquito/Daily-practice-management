@@ -1,0 +1,42 @@
+<table class="table table-hover header-fixed my-5">
+    <thead>
+        <tr class="d-flex">
+            <td class="col-8">
+                <h2 class="d-inline mr-4 mt-4">Recursos</h2>
+                {% if request.path == '/resources/' %}<form class="d-inline form-inline mt-3" method="GET">
+                    <input type="search" class="form-control" name="search" placeholder="Procurar...">
+                    <button class="btn text-white">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </form>
+                {% endif %}
+            </td>
+            <td class="col-4 text-right">
+                <a class="ropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span>Mais recente</span><i class="material-icons">arrow_drop_down</i></a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Mais antigo</a>
+                    <a class="dropdown-item" href="#">Nome <i class="material-icons">arrow_downward</i></a>
+                    <a class="dropdown-item" href="#">Nome <i class="material-icons">arrow_upward</i></a>
+                </div>
+            </td>
+        </tr>
+    </thead>
+    <tbody style="max-height: 60vh;">
+        <tr class="d-flex">
+            <td class="col-9"><a data-toggle="modal" onclick='newModal("{% url "resource_create" %}", "Novo Recurso", "#modal", "")' href=""><h3 style="color:#058096;"><i class="material-icons mr-2">add</i> Novo Recurso</h3></a></td>
+            <td class="col-3 text-right"></td>
+        </tr>
+        {% for recurso in object_list %}
+        <tr class="d-flex">
+            <td class="d-block col-7"> <a data-toggle="modal" onclick='newModal("{% url "resource_detail" recurso.id %}", "Detalhes do Recurso", "#detailModal", "")' href="">{{ recurso.resourcename }}</a></td>
+            <td class="d-block col-4 text-right">{{ recurso.datecreated }}</td>
+            <td class="d-block col-1 text-right">
+                <a data-toggle="modal" onclick='newModal("{% url "resource_update" recurso.id %}", "Editar Recurso", "#modal", "")' href=""><i class="material-icons">create</i></a>
+                <a data-toggle="modal" onclick='newModal("{% url "resource_delete" recurso.id %}", "Eliminar Recurso", "#deleteModal", "", "#del")' href=''><i class="material-icons text-danger">clear</i></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+  

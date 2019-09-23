@@ -1,0 +1,8 @@
+
+{% load crispy_forms_tags %}
+<form id="f" class="ajax" method="post" data-validate-username-url="{% url  'verb_create' %}">
+<div class="container">
+    {% csrf_token %}
+    {{ form|crispy }}
+</div>
+</form>

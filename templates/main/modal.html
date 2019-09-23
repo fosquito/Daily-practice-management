@@ -1,0 +1,78 @@
+<div class="modal fade" data-backdrop="static" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title"></h2>
+                <a class="close text-danger" data-dismiss="modal" aria-label="Close">
+                    <span>&times;</span>
+                </a>
+            </div>
+            <form id="f" class="ajax" method="post">
+                <div class="modal-body" id="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <a class="text-danger mr-3" href="" data-dismiss="modal">Cancelar</a>
+                    <button type="submit" class="btn text-white">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title"></h2>
+                <a class="close text-danger" data-dismiss="modal" aria-label="Close">
+                    <span>&times;</span>
+                </a>
+            </div>
+            <div class="modal-body">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" data-backdrop="static" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title"></h2>
+                <a class="close text-danger" data-dismiss="modal" aria-label="Close">
+                    <span>&times;</span>
+                </a>
+            </div>
+            <form id="del" class="ajax" method="post">
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <a class="text-danger mr-3" href="" data-dismiss="modal">Cancelar</a>
+                    <button type="submit" class="btn text-white">Eliminar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" data-backdrop="static" id="Searchmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title"></h2>
+                <a class="close text-danger" data-dismiss="modal" aria-label="Close">
+                    <span>&times;</span>
+                </a>
+            </div>
+            <form class="ajax" method="get" action="{% url 'search_results' %}">
+                <div class="modal-body" id="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <a class="text-danger mr-3" href="" data-dismiss="modal">Cancelar</a>
+                    <button type="submit" class="btn text-white">Pesquisar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

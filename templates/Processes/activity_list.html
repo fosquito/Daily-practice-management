@@ -1,0 +1,15 @@
+ {% extends "main/navbar.html" %} 
+ {% block content %}
+ <div class="container-fluid" style=" margin-top:-25px;">
+    <div class="row">
+        <div class="navegation">
+            <a href='{% url "home" %}'><i class="material-icons">home</i></a>
+            <i class="material-icons" style="position:relative; top:5px;">keyboard_arrow_right</i>
+            <b><span class="text-dark">Atividades</span></b>
+        </div>
+    </div>
+</div>
+ <div class="container">
+ {% include "tables/activity.html" %}
+ </div>
+ {% endblock %}

@@ -1,0 +1,156 @@
+<script>
+    $(".markerDiv").click(function () {
+        if(event.srcElement.id == "noCheck"){
+            return;
+        }
+        var $checks = $(this).find('input:checkbox[name=markerType]');
+        $checks.prop("checked", !$checks.is(":checked"));
+        var boxes = ($('input[name=markerType]:checked'))
+        if(boxes.length > 0){
+            $('.newChecked').show();
+        }
+        else{
+            $('.newChecked').hide();
+        }
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function(e){
+        $('.search-panel .dropdown-menu').find('a').click(function(e) {
+            e.preventDefault();
+            var param = $(this).attr("href").replace("#","");
+            var concept = $(this).text();
+            $('.search-panel span#search_concept').text(concept);
+            $('.input-group #search_param').val(param);
+        });
+    });
+</script>
+<script>
+    function newModal(url, titulo, modal, size, id="#f"){
+        var myNode = document.getElementById("modal-body");
+        while (myNode.firstChild) {
+            myNode.removeChild(myNode.firstChild);
+        }
+        $(".modal-dialog").removeClass("modal-lg");
+        $(id).attr('action', url);
+        $(".modal-dialog").addClass(size);
+        try{
+            var x = document.getElementById("sentenceTable");
+            x.style.display = "none"
+        }catch{}
+        var btn = $(this);
+        var items = $("table input:checkbox:checked").map(function () {
+            return $(this).attr('id');
+        }).get();
+        $.ajax({
+            url: url,
+            type: 'GET',
+            dataType:'json',
+            data:{
+                'id': items,
+            },
+            beforeSend: function(data){
+                if(url == "/create_group/" || url == "/create_pattern/"){
+                    if(url == "/create_group/"){title = "Frases";}else{title = "Agrupamentos";}
+                    //container
+                    var cont = document.createElement('div');
+                    cont.className = 'container';
+                    cont.id = 'containerModal';
+                    $('.modal-body').append(cont);
+                    //row
+                    var row = document.createElement('div');
+                    row.className = 'row';
+                    row.id = 'rowModal';
+                    $('#containerModal').append(row);
+                    //col form
+                    var gFo = document.createElement('div');
+                    gFo.className = 'col-xl-6 col-lg-6';
+                    gFo.id = 'theForm';
+                    $('#rowModal').append(gFo);
+                    //col table
+                    var gFo = document.createElement('div');
+                    gFo.className = 'col-xl-6 col-lg-6';
+                    gFo.id = 'theTable';
+                    $('#rowModal').append(gFo);
+                    //form
+                    $('#theForm').load(url);
+                    //table
+                    var tab = document.createElement('table');
+                    tab.className = 'table header-fixed table-hover';
+                    tab.id = 'myTable';
+                    $('#theTable').append(tab);
+                    //head table
+                    var the = document.createElement('thead');
+                    the.id = 'myTableHead';
+                    $('#myTable').append(the);
+                    //row table
+                    var rta = document.createElement('tr');
+                    rta.className = 'd-flex';
+                    rta.id = 'myTableRow';
+                    $('#myTableHead').append(rta);
+                    //table title space
+                    var tti = document.createElement('th');
+                    tti.className = 'col-12';
+                    tti.id = 'titleSpace';
+                    $('#myTableRow').append(tti);
+                    //title text
+                    var  tit = document.createTextNode(title);
+                    $('#titleSpace').append(tit);
+                    //body table
+                    var tbo = document.createElement('tbody');
+                    tbo.style.cssText = 'max-height:60vh;';
+                    tbo.id = 'myTableBody';
+                    $('#myTable').append(tbo);
+                }
+                else{ $('.modal-body').load(url);}
+                $('.modal-title').html(titulo);
+                $(modal).modal('show');
+            },
+            success: function(data){
+                $.each(data, function(key, value){
+                    //row table
+                    var rta = document.createElement('tr');
+                    rta.className = 'd-flex';
+                    rta.id = 'myTableRow'+value.pk;
+                    //row table field
+                    var rtf = document.createElement('tr');
+                    rtf.className = 'd-block col-12 my-2 mb-2';
+                    rtf.id = 'myTableRowTd'+value.pk;
+                    $('#myTableBody').append(rta);
+                    $('#myTableRow'+value.pk).append(rtf);
+                    if(url == "/create_group/"){
+                    var sentence = document.createTextNode(value.fields.sentencename); $('#myTableRowTd'+value.pk).append(sentence);}
+                    else if(url == "/create_pattern/"){var group = document.createTextNode(value.fields.groupname); $('#myTableRowTd'+value.pk).append(group);}
+                });
+            },
+        });
+    } 
+</script>
+<script>
+    $(document).ready(function(){
+        $('#f').submit(function() {
+            $.ajax({ 
+                type: $(this).attr('method'), 
+                url: $(this).attr('action'),
+                data: $(this).serialize(),
+                dataType: 'json',
+                success: function(data) {
+                    if( data.local == '' ){ window.location.href = '{{ request.path }}'; }
+                    else { window.location.href = '../'+data.local; }
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    $(".errorMessage").remove();
+                    $("#div_id_"+Object.keys(JSON.parse(xhr.responseText))[0]).append("<div class='errorMessage text-danger'>"+Object.values(JSON.parse(xhr.responseText))[0]+"</div>");
+                }
+            });
+            return false; 
+        });
+    });
+</script>

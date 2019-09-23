@@ -1,0 +1,48 @@
+<table class="table table-hover header-fixed my-5">
+    <thead>
+        <tr class="d-flex">
+            <td class="col-8">
+                <h2 class="d-inline mr-4 mt-4">Frases</h2>
+                {% if request.path == '/sentences/' %}<form class="d-inline form-inline mt-3" method="GET">
+                    <input type="search" class="form-control" name="search" placeholder="Procurar...">
+                    <button class="btn text-white">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </form>
+                {% endif %}
+            </td>
+            <td class="col-4 text-right">
+                <a class="ropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span>Mais recente</span><i class="material-icons">arrow_drop_down</i></a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Mais antigo</a>
+                    <a class="dropdown-item" href="#">Nome <i class="material-icons">arrow_downward</i></a>
+                    <a class="dropdown-item" href="#">Nome <i class="material-icons">arrow_upward</i></a>
+                </div>
+            </td>
+        </tr>
+        {% if perms.Activities.add_sentence %}
+            <tr class="d-flex" style="border-bottom:0px;">
+                <td class="col-12"><a data-toggle="modal" onclick='newModal("{% url "sentence_create" %}", "Nova Frase", "#modal","modal-lg")' href=""><h3 style="color:#058096;"><i class="material-icons mr-2">add</i> Nova frase</h3></a></td>
+            </tr>
+        {% endif %}
+    </thead>
+    <tbody style="max-height: 55vh;">
+            {% for frase in object_list %}
+                <tr class="d-flex markerDiv">
+                    {% if perms.Activities.add_group and request.path == '/sentences/' %}<td class="d-block col-1"><input onclick="this.checked=!this.checked;" type="checkbox" name="markerType" id="{{ frase.id }}" class="mt-1"/></td>{% endif %}
+                    <td class="d-block {% if perms.Activities.add_group and request.path == '/sentences/' %}col-6{% else %}col-7{% endif %}"> <a data-toggle="modal" onclick='newModal("{% url "sentence_detail" frase.id %}", "Detalhes da Frase", "#detailModal", "modal-lg");' id="noCheck" href="" >{{ frase.sentencename }}</a></td>
+                    <td class="d-block col-4 text-right">{{ frase.datecreated }}</td>
+                    <td class="d-block col-1 text-right">
+                        <a data-toggle="modal" onclick='newModal("{% url "sentence_update" frase.id %}", "Editar Frase", "#modal", "modal-lg")' href=''><i class="material-icons" id="noCheck">create</i></a>
+                        <a data-toggle="modal" onclick='newModal("{% url "sentence_delete" frase.id %}", "Eliminar Frase", "#deleteModal", "", "#del")' href=''><i class="material-icons text-danger" id="noCheck">clear</i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+    </tbody>
+</table>
+<div class="newChecked" style="display:none">
+    <button type="button" href="#" class="btn float-right text-white" data-toggle="modal" onclick='newModal("{% url "group_create" %}", "Novo Agrupamento", "#modal", "modal-lg")'><i class="fas fa-link"></i> Associar frases a agrupamento</button>
+</div>
+
+
+<!-- onclick='newModal("{% url "group_create" %}", "Novo Agrupamento", "#modal", "")' -->

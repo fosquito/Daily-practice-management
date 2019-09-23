@@ -1,0 +1,4 @@
+{% if perms.Activities.add_verb %}
+    <a class="dropdown-item" data-toggle="modal" onclick='newModal("{% url "verb_create" %}", "Novo Verbo", "#modal", "")' href="">Verbo</a>    
+{% endif %}
+

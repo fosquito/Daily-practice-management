@@ -1,0 +1,23 @@
+{% extends "main/navbar.html" %} 
+{% block content %}
+    <div class="container-fluid" style=" margin-top:-25px;">
+        <div class="row">
+            <div class="navegation">
+                <a href='{% url "home" %}'><i class="material-icons">home</i></a>
+                <i class="material-icons" style="position:relative; top:5px;">keyboard_arrow_right</i>
+                <b><span class="text-dark" id="path">Frases</span></b>
+            </div>
+            {% for message in messages %}
+                <div class="d-flex ml-auto mr-4">
+                    {% if message.tags == "success" %}<p class="alert alert-success" role="alert">Frase criada com sucesso!<p>
+                    {% elif message.tags == "warning" %}<p class="alert alert-danger" role="alert">Frase removida com sucesso!<p>
+                    {% elif message.tags == "info" %}<p class="alert alert-info" role="alert">Frase alterado com sucesso!<p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="container">
+        {% include "tables/sentence.html" %}
+    </div>
+{% endblock %}

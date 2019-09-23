@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <table class="table">
+                <thead>
+                    <tr class="d-flex">
+                        <th class="col-12 border-top-0"><h4>Frases</h4></th> 
+                    </tr>
+                </thead>
+                <tbody style="max-height: 60vh;">
+                    {% for frase in object.sentences.all %}
+                    <tr class="d-flex">
+                        <td class="d-block col-8"> <a href="">{{ frase.sentencename }}</a></td>
+                        <td class="d-block col-4 text-right">{{ frase.datecreated }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-4">
+            <h6 class="mt-2">Agrupamento:</h6>
+            <p>{{object.groupname}}</p>
+            <h6 class="mt-4">Autor:</h6>
+            <p>{{object.userid}}</p>
+            <h6 class="mt-4">Data de criação:</h6>
+            <p>{{object.creationdate}}</p>
+        </div>
+    </div> 
+</div>

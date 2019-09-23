@@ -1,0 +1,5 @@
+{% if perms.Activities.view_pattern %}
+<li {% if request.path == "/patterns/" %} class="active" {% endif %}>
+	<a href='{% url "pattern_list" %}'><i class="material-icons">play_arrow</i> Padrões</a>
+</li>
+{% endif %}

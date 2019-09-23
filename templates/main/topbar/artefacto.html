@@ -1,0 +1,4 @@
+{% if perms.Activities.add_artefact %}
+    <a class="dropdown-item" data-toggle="modal" onclick='newModal("{% url "artefact_create" %}", "Novo artefacto", "#modal", "")' href="">Artefacto</a>
+{% endif %}
+

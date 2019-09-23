@@ -1,0 +1,22 @@
+{% if perms.Processes.view_process %}
+<li {% if request.path == "/processs/" %} class="active" {% endif %}>
+	<a href="#"><i class="material-icons">play_arrow</i> Processos</a>
+</li>
+{% endif %}
+<ul class="list-unstyled components">
+    {% if perms.Processes.view_activity %}
+	<li {% if request.path == "/activitys/" %} class="active" {% endif %}>
+		<a href="#"><i class="material-icons">keyboard_arrow_right</i> Atividades</a>
+	</li>
+    {% endif %}
+     {% if perms.Processes.view_role %}
+	<li {% if request.path == "/roles/" %} class="active" {% endif %}>
+		<a href="#"><i class="material-icons">keyboard_arrow_right</i> Papéis</a>
+	</li>
+    {% endif %}
+    {% if perms.Processes.view_product %}
+	<li {% if request.path == "/products/" %} class="active" {% endif %}>
+		<a href="#"><i class="material-icons">keyboard_arrow_right</i> Produtos</a>
+	</li>
+    {% endif %}
+</ul>

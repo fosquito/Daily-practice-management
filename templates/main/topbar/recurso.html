@@ -1,0 +1,4 @@
+{% if perms.Activities.add_resource %}
+    <a class="dropdown-item" data-toggle="modal" onclick='newModal("{% url "resource_create" %}", "Novo Recurso", "#modal", "")' href="">Recurso</a>
+{% endif %}
+

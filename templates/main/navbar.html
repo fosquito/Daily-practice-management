@@ -1,0 +1,77 @@
+{% extends "main/header.html" %}
+{% block navbar %}
+<body>  
+<div class="wrapper">
+    <nav id="sidebar" class="navbar-info" style="background:#058096;">
+        <div class="sidebar-header" style="background:#058096;">
+            <h4 class="text-white">REGISTO DIÁRIO </h4>
+        </div>
+        <ul class="list-unstyled components text-white">
+            <li {% if request.path == "/" %} class="active" {% endif %}>
+                <a href='{% url "home" %}' style="margin-top:10px;"><i class="material-icons">home</i> PÁGINA INICIAL</a>
+            </li>
+        </ul>
+        <ul class="list-unstyled components text-white">
+                {% include "main/sidebar/frase.html" %}
+                {% include "main/sidebar/agrupamento.html" %}
+                {% include "main/sidebar/padrao.html" %}
+                {% include "main/sidebar/processo.html" %}
+        </ul>
+	</nav>
+	<div id="content">
+		<nav class="navbar navbar-expand-lg navbar-light">
+			<button type="button" id="sidebarCollapse" class="btn text-white" style="background:#058096;"><!--btm-info-->
+				<i class="fas fa-align-left"></i>
+			</button>
+			<div class="navegation">
+				<h1 class="titulo-principal"> Página Inicial</h1>
+			</div>
+			<button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <button type="button" href="#" class="btn float-right text-white" data-toggle="modal" onclick='newModal("{% url "search" %}", "Pesquisa Avançada", "#Searchmodal", "modal-lg")'>Pesquisa Avançada <i class="fa fa-search"></i></button>
+                    </li>
+					<li class="nav-item">
+						<div class="btn-group">
+							<button type="button" class="btn btn-warning text-left dropdown-toggle" style="width:100px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">+ Novo </button>
+							<div class="dropdown-menu dropdown-menu-right">
+								{% include "main/topbar/utilizador.html" %}
+								{% include "main/topbar/frase.html" %}
+								{% include "main/topbar/verbo.html" %}
+                                {% include "main/topbar/recurso.html" %}
+                                {% include "main/topbar/artefacto.html" %}
+								{% include "main/topbar/agrupamento.html" %}
+								{% include "main/topbar/padrao.html" %}
+								{% include "main/topbar/processo.html" %}
+								{% include "main/topbar/atividade.html" %}
+                                {% include "main/topbar/papel.html" %}
+                                {% include "main/topbar/produto.html" %}
+							</div>
+						</div>
+					</li>
+                                        
+					<li class="nav-item dropdown">
+						<a class="nav-link text-left text-dark" style="font-size:1em;" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{ request.user }}<i class="fas fa-angle-down"></i> </i></a>
+						<div class="dropdown-menu dropdown-menu-right">
+							<a class="dropdown-item" href="#">Mensagens</a>
+							<a class="dropdown-item" href="#">Contactos</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#">Gerir conta</a>
+							<a class="dropdown-item" href="#">Definições</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="{% url 'logout' %}">Terminar sessão</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</nav>
+			{% block content %}
+			{% endblock %}
+	</div>
+    {% include "main/modal.html" %}
+</body>
+{% include "main/scripts.html" %}
+{% endblock %}

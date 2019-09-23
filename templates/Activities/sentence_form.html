@@ -1,0 +1,48 @@
+{% load crispy_forms_tags %}
+<div class="container">
+    {% csrf_token %}
+    <div class="row">
+        {% for p in form %}
+            {% if p.name == "sentencename" %}
+                <div class="col-9">
+                    {{ p|as_crispy_field }}
+                </div>
+            {% elif p.name == "datarealizado" %}
+                <div class="col-3">
+                    {{ p|as_crispy_field }}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="row">
+        {% for p in form %}
+            {% if p.name == "subject" %}
+                <div class="col-4">
+                    {{ p|as_crispy_field }}
+                </div>
+            {% elif p.name == "verbid" %}
+                <div class="col-4">
+                    {{ p|as_crispy_field }}
+                </div>
+            {% elif p.name == "receiver" %}
+                <div class="col-4">
+                    {{ p|as_crispy_field }}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div class="row">
+        {% for p in form %}
+            {% if p.name == "resourceid" %}
+                <div class="col-6">
+                    {{ p|as_crispy_field }}
+                </div>
+            {% elif p.name == "artefactid" %}
+                <div class="col-6">
+                    {{ p|as_crispy_field }}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <!--{{ form|crispy }}-->
+</div>
